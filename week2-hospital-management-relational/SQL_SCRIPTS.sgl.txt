@@ -1,0 +1,207 @@
+SQL Queries used in TiBD Cloud
+
+
+CREATE TABLES
+-----------------------------------------------------------------------------------------------------------
+ 
+CREATE TABLE Patients (
+    Patient_ID INT NOT NULL AUTO_INCREMENT,
+    Name VARCHAR(100) NOT NULL,
+    Date_of_Birth DATE NOT NULL,
+    Medical_History VARCHAR(255),
+    Current_Conditions VARCHAR(255),
+    PRIMARY KEY (Patient_ID)
+);
+ 
+CREATE TABLE Medical_Staff (
+    Staff_ID INT NOT NULL AUTO_INCREMENT,
+    Name VARCHAR(100) NOT NULL,
+    Role VARCHAR(50) NOT NULL,
+    Specialization VARCHAR(100),
+    PRIMARY KEY (Staff_ID)
+);
+ 
+CREATE TABLE Appointments (
+    Appointment_ID INT NOT NULL AUTO_INCREMENT,
+    Patient_ID INT NOT NULL,
+    Staff_ID INT NOT NULL,
+    Date DATE NOT NULL,
+    Time TIME NOT NULL,
+    Purpose VARCHAR(255),
+    PRIMARY KEY (Appointment_ID),
+    FOREIGN KEY (Patient_ID) REFERENCES Patients(Patient_ID),
+    FOREIGN KEY (Staff_ID) REFERENCES Medical_Staff(Staff_ID)
+);
+ 
+CREATE TABLE Treatments (
+    Treatment_ID INT NOT NULL AUTO_INCREMENT,
+    Patient_ID INT NOT NULL,
+    Diagnosis VARCHAR(255),
+    Treatment_Plan VARCHAR(255),
+    Medication VARCHAR(255),
+    PRIMARY KEY (Treatment_ID),
+    FOREIGN KEY (Patient_ID) REFERENCES Patients(Patient_ID)
+);
+ 
+CREATE TABLE Billing (
+    Billing_ID INT NOT NULL AUTO_INCREMENT,
+    Patient_ID INT NOT NULL,
+    Treatment_ID INT NOT NULL,
+    Itemized_Charges VARCHAR(255),
+    Total_Amount DECIMAL(10, 2),
+    Payment_Status VARCHAR(50),
+    PRIMARY KEY (Billing_ID),
+    FOREIGN KEY (Patient_ID) REFERENCES Patients(Patient_ID),
+    FOREIGN KEY (Treatment_ID) REFERENCES Treatments(Treatment_ID)
+);
+ 
+-------------------------------------------------------------------------------------------------------------
+LOADING SAMPLE DATA
+-------------------------------------------------------------------------------------------------------------
+ 
+INSERT INTO Patients (Name, Date_of_Birth, Medical_History, Current_Conditions)
+VALUES
+('Alice Mensah', '1985-03-14', 'Hypertension', 'Fever'),
+('James Osei', '1990-07-22', 'Diabetes', 'Fatigue'),
+('Esi Dartey', '2001-11-05', 'Asthma', 'Chest pain'),
+('Kwame Adjei', '1978-06-30', 'Arthritis', 'Joint pain'),
+('Abena Frimpong', '1995-09-18', 'None', 'Headache');
+ 
+INSERT INTO Medical_Staff (Name, Role, Specialization)
+VALUES
+('Dr. Kofi Boateng', 'Doctor', 'Cardiology'),
+('Dr. Abena Sarpong', 'Doctor', 'Endocrinology'),
+('Nurse Yaa Frimpong', 'Nurse', 'General'),
+('Dr. Samuel Tetteh', 'Doctor', 'Rheumatology'),
+('Nurse Ama Owusu', 'Nurse', 'Neurology');
+ 
+INSERT INTO Appointments (Patient_ID, Staff_ID, Date, Time, Purpose)
+VALUES
+(1, 1, '2024-01-10', '09:00:00', 'Routine checkup'),
+(2, 2, '2024-01-12', '11:00:00', 'Follow-up consultation'),
+(3, 3, '2024-01-15', '14:30:00', 'Emergency visit'),
+(4, 4, '2024-01-17', '10:00:00', 'Joint pain assessment'),
+(5, 5, '2024-01-18', '13:00:00', 'Headache consultation'),
+(1, 2, '2024-02-05', '09:30:00', 'Lab result review'),
+(2, 1, '2024-02-10', '11:30:00', 'Cardiac screening');
+ 
+INSERT INTO Treatments (Patient_ID, Diagnosis, Treatment_Plan, Medication)
+VALUES
+(1, 'Hypertensive crisis', 'Lifestyle modification and medication', 'Amlodipine'),
+(2, 'Type 2 Diabetes', 'Insulin therapy and diet control', 'Metformin'),
+(3, 'Acute asthma attack', 'Nebulisation and rest', 'Salbutamol'),
+(4, 'Rheumatoid arthritis', 'Physiotherapy and anti-inflammatories', 'Ibuprofen'),
+(5, 'Tension headache', 'Rest and pain management', 'Paracetamol');
+ 
+INSERT INTO Billing (Patient_ID, Treatment_ID, Itemized_Charges, Total_Amount, Payment_Status)
+VALUES
+(1, 1, 'Consultation: $50, Lab test: $30', 80.00, 'Paid'),
+(2, 2, 'Consultation: $50, Medication: $60', 110.00, 'Pending'),
+(3, 3, 'Emergency fee: $100, Medication: $30', 130.00, 'Paid'),
+(4, 4, 'Consultation: $50, Physiotherapy: $80', 130.00, 'Pending'),
+(5, 5, 'Consultation: $50', 50.00, 'Paid');
+
+---------------------------------------------------------------------------------------------------------------
+SELECT OPERATION
+---------------------------------------------------------------------------------------------------------------
+Single Table Select
+==================
+
+SQL 1: Select all columns from the Patients table
+
+SELECT * FROM Patients;
+
+
+SQL 2: Select patients where Current_Conditions is 'Fever'
+
+
+SELECT Patient_ID, Name, Date_of_Birth, Current_Conditions
+FROM Patients
+WHERE Current_Conditions = 'Fever';
+
+
+Multiple Table Select
+=====================
+
+SQL 1:  Select patient names and their appointment dates and purpose
+-- Joins Patients and Appointments on PK Patient_ID
+
+SELECT Patients.Name, Appointments.Date, Appointments.Time, Appointments.Purpose
+FROM Patients
+INNER JOIN Appointments ON Patients.Patient_ID = Appointments.Patient_ID;
+
+
+SQL 2: Select patient names with the staff member who treated them
+-- Joins Patients, Appointments, and Medical_Staff
+
+SELECT Patients.Name, Medical_Staff.Name, Medical_Staff.Role, Appointments.Date, Appointments.Purpose
+FROM Appointments
+INNER JOIN Patients ON Appointments.Patient_ID = Patients.Patient_ID
+INNER JOIN Medical_Staff ON Appointments.Staff_ID = Medical_Staff.Staff_ID;
+
+-------------------------------------------------------------------------------------------------------------
+WHERE CLAUSE
+-------------------------------------------------------------------------------------------------------------
+
+SQL 1: Here I am using a where clause to retrieve data that fits the condition, "Pending."
+
+SELECT Patients.Name, Billing.Itemized_Charges, Billing.Total_Amount, Billing.Payment_Status
+FROM Patients
+INNER JOIN Billing ON Patients.Patient_ID = Billing.Patient_ID
+WHERE Billing.Payment_Status = 'Pending';
+
+
+--------------------------------------------------------------------------------------------------------------
+INSERT STATEMENT
+--------------------------------------------------------------------------------------------------------------
+
+SQL 1: This statement was used to insert two new records into the datatable, Medical Staff
+
+INSERT INTO Medical_Staff (Name, Role, Specialization)
+VALUES
+('Dr. Clar Weah', 'Doctor', 'Pediatrician'),
+('Dr. Abraham Nah', 'Doctor', 'Urologist');
+
+---------------------------------------------------------------------------------------------------------------
+UPDATE STATEMENT
+---------------------------------------------------------------------------------------------------------------
+
+SQL: This statement was used to update the table Patients by adding a new record. 
+
+UPDATE Patients
+SET Name = 'Turvon Al Weah', Date_of_Birth = '1996-09-02', Medical_History = 'Malaria', Current_Conditions = 'Fever'
+WHERE Patient_ID = 1;
+
+
+---------------------------------------------------------------------------------------------------------------
+DELETE STATEMENT
+---------------------------------------------------------------------------------------------------------------
+
+SQL: This statement was used to delete records from the Medical Staff table that had specific staff_IDS
+
+DELETE FROM Medical_Staff WHERE Staff_ID ='30001';
+DELETE FROM Medical_Staff WHERE Staff_ID ='30002';
+
+
+----------------------------------------------------------------------------------------------------------------
+Join Statements
+----------------------------------------------------------------------------------------------------------------
+
+Left Join
+
+SQL: All patients, with or without appointments (6 base rows)
+
+SELECT Patients.Name, Appointments.Date, Appointments.Purpose
+FROM Patients
+LEFT JOIN Appointments ON Patients.Patient_ID = Appointments.Patient_ID;
+
+
+Right Join
+
+All appointments, with or without matching patients (7 base rows)
+
+SQL: SELECT Patients.Name, Appointments.Date, Appointments.Purpose
+FROM Patients
+RIGHT JOIN Appointments ON Patients.Patient_ID = Appointments.Patient_ID;
+
+

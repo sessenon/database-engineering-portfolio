@@ -31,5 +31,8 @@ A fully functional local Redis cache layer with tested strings/hashes/lists/sets
   ![Cache Aside Flow](./Cache%20Aside%20Flow.png)
 - **PowerPoint:** [`Optimized Data Retrieval Strategy.pptx`](./Optimized%20Data%20Retrieval%20Strategy.pptx)
 
+## Scripts & Queries
+- **Redis commands:** [`UrbanHive_Redis_Commands_Scripts.txt`](./UrbanHive_Redis_Commands_Scripts.txt) — full command reference across strings, hashes, lists, and sets
+
 ## Career Relevance
 Caching strategy and performance tuning are core DBA responsibilities, especially for read-heavy, high-traffic systems. This project also reflects the ability to stand up and troubleshoot a full local development environment (WSL2/Linux) from nothing — a practical systems skill that carries into every later week.

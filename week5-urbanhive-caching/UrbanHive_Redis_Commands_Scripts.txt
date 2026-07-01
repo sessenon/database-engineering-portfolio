@@ -1,0 +1,56 @@
+============================================================
+UrbanHive ElastiCache Strategy — Redis Command Script
+============================================================
+
+
+------------------------------------------------------------
+BLOCK 1 — STRINGS: User Session Tokens
+Key pattern: session:user:{username}
+Use case: Cache authenticated user sessions with auto-expiry
+------------------------------------------------------------
+
+SET session:user:ShadyWeah "tok_xK9mZ2pQ" EX 3600
+SET session:user:LibWest "tok_aR7tY4nL" EX 3600
+GET session:user:ShadyWeah
+TTL session:user:ShadyWeah
+
+
+------------------------------------------------------------
+BLOCK 2 — HASHES: Product Details
+Key pattern: product:{id}
+Use case: Cache full product records with individual field access
+------------------------------------------------------------
+
+HSET product:1001 name "Wireless Headphones" price "79.99" stock "240" category "Electronics"
+HSET product:1002 name "Running Shoes" price "54.99" stock "180" category "Footwear"
+HGETALL product:1001
+HGET product:1001 price
+HSET product:1001 price "69.99"
+HGET product:1001 price
+
+
+------------------------------------------------------------
+BLOCK 3 — LISTS: Recently Viewed Items
+Key pattern: recent:{username}
+Use case: Track per-user browsing history, capped at 5 items
+------------------------------------------------------------
+
+LPUSH recent:ShadyWeah 1001 1005 1012 1008 1003
+LRANGE recent:ShadyWeah 0 4
+LPUSH recent:ShadyWeah 1015
+LRANGE recent:ShadyWeah 0 4
+LTRIM recent:ShadyWeah 0 4
+
+
+------------------------------------------------------------
+BLOCK 4 — SETS: Featured Product IDs
+Key pattern: featured:products
+Use case: O(1) membership checks for homepage featured items
+------------------------------------------------------------
+
+SADD featured:products 1001 1005 1010 1015 1020
+SMEMBERS featured:products
+SISMEMBER featured:products 1001
+SISMEMBER featured:products 9999
+SREM featured:products 1020
+SMEMBERS featured:products

@@ -1,0 +1,190 @@
+----------------------------------------------------------------------------------------------------------------
+Cypher Queries Used to Create Node
+----------------------------------------------------------------------------------------------------------------
+
+// Users
+
+CREATE (:User {userId:'u1', name:'Alex Rivera', email:'alex@synthconnect.io', bio:'Music lover', location:'Monrovia', joinedAt:datetime('2024-01-15T10:00:00'), isPrivate:false})
+
+CREATE (:User {userId:'u2', name:'LibWest', email:'libwest@synthconnect.io', bio:'Hip hop artist', location:'Accra', joinedAt:datetime('2024-02-01T09:00:00'), isPrivate:false})
+
+CREATE (:User {userId:'u3', name:'ShadyWeah', email:'shadyweah@synthconnect.io', bio:'Basketball player', location:'Lagos', joinedAt:datetime('2024-02-14T11:00:00'), isPrivate:false})
+
+CREATE (:User {userId:'u4', name:'DecentThaGreat', email:'decent@synthconnect.io', bio:'Content creator', location:'Abidjan', joinedAt:datetime('2024-03-01T08:00:00'), isPrivate:false})
+
+CREATE (:User {userId:'u5', name:'LightBringer', email:'light@synthconnect.io', bio:'Inspiration daily', location:'Freetown', joinedAt:datetime('2024-03-10T07:00:00'), isPrivate:false})
+
+CREATE (:User {userId:'u6', name:'TooSmooth', email:'toosmooth@synthconnect.io', bio:'Smooth vibes only', location:'Dakar', joinedAt:datetime('2024-03-20T06:00:00'), isPrivate:true})
+
+// Posts
+
+CREATE (:Post {postId:'p1', content:'Afrobeats is taking over the world!', type:'text', createdAt:datetime('2024-04-01T10:00:00'), likeCount:320, shareCount:45})
+
+CREATE (:Post {postId:'p2', content:'Top 5 coding tools for 2024', type:'text', createdAt:datetime('2024-04-02T11:00:00'), likeCount:210, shareCount:30})
+
+CREATE (:Post {postId:'p3', content:'My morning workout routine', type:'image', createdAt:datetime('2024-04-03T07:00:00'), likeCount:180, shareCount:20})
+
+CREATE (:Post {postId:'p4', content:'New drop — stream now!', type:'video', createdAt:datetime('2024-04-04T12:00:00'), likeCount:540, shareCount:90})
+
+CREATE (:Post {postId:'p5', content:'Graph databases are the future', type:'text', createdAt:datetime('2024-04-05T09:00:00'), likeCount:95, shareCount:12})
+
+// Comments
+
+CREATE (:Comment {commentId:'c1', body:'This is such a vibe!', createdAt:datetime('2024-04-01T11:00:00'), likeCount:12})
+
+CREATE (:Comment {commentId:'c2', body:'Totally agree, Afrobeats is global now', createdAt:datetime('2024-04-01T12:00:00'), likeCount:8})
+
+CREATE (:Comment {commentId:'c3', body:'Great tools list, bookmarked!', createdAt:datetime('2024-04-02T13:00:00'), likeCount:5})
+
+CREATE (:Comment {commentId:'c4', body:'Fire drop, been on repeat all day', createdAt:datetime('2024-04-04T14:00:00'), likeCount:22})
+
+// Topics
+
+CREATE (:Topic {topicId:'t1', name:'Afrobeats', category:'Music', followerCount:4200})
+
+CREATE (:Topic {topicId:'t2', name:'Tech', category:'Technology', followerCount:3100})
+
+CREATE (:Topic {topicId:'t3', name:'Fitness', category:'Lifestyle', followerCount:2800})
+
+CREATE (:Topic {topicId:'t4', name:'Gaming', category:'Entertainment', followerCount:5500})
+
+// Groups
+
+CREATE (:Group {groupId:'g1', name:'Afrobeats Lovers', description:'All things Afrobeats', privacy:'public', memberCount:1200, createdAt:datetime('2024-01-01T00:00:00')})
+
+CREATE (:Group {groupId:'g2', name:'Dev Community', description:'Developers connecting', privacy:'public', memberCount:800, createdAt:datetime('2024-01-15T00:00:00')})
+
+CREATE (:Group {groupId:'g3', name:'Fitness Squad', description:'Workout motivation', privacy:'private', memberCount:300, createdAt:datetime('2024-02-01T00:00:00')})
+
+------------------------------------------------------------------------------------------------------------------
+Cypher Queries used to Create Relationships
+------------------------------------------------------------------------------------------------------------------
+
+// FOLLOWS
+
+MATCH (a:User {userId:'u1'}), (b:User {userId:'u2'}) CREATE (a)-[:FOLLOWS {since:datetime('2024-02-05T00:00:00')}]->(b)
+
+MATCH (a:User {userId:'u1'}), (b:User {userId:'u3'}) CREATE (a)-[:FOLLOWS {since:datetime('2024-02-10T00:00:00')}]->(b)
+
+MATCH (a:User {userId:'u2'}), (b:User {userId:'u4'}) CREATE (a)-[:FOLLOWS {since:datetime('2024-03-01T00:00:00')}]->(b)
+
+MATCH (a:User {userId:'u3'}), (b:User {userId:'u5'}) CREATE (a)-[:FOLLOWS {since:datetime('2024-03-05T00:00:00')}]->(b)
+
+MATCH (a:User {userId:'u4'}), (b:User {userId:'u6'}) CREATE (a)-[:FOLLOWS {since:datetime('2024-03-15T00:00:00')}]->(b)
+
+// FRIENDS_WITH
+
+MATCH (a:User {userId:'u1'}), (b:User {userId:'u4'}) CREATE (a)-[:FRIENDS_WITH {since:datetime('2024-03-01T00:00:00'), status:'accepted'}]->(b)
+
+MATCH (a:User {userId:'u2'}), (b:User {userId:'u5'}) CREATE (a)-[:FRIENDS_WITH {since:datetime('2024-03-10T00:00:00'), status:'accepted'}]->(b)
+
+// CREATED
+
+MATCH (a:User {userId:'u1'}), (b:Post {postId:'p1'}) CREATE (a)-[:CREATED {createdAt:datetime('2024-04-01T10:00:00')}]->(b)
+
+MATCH (a:User {userId:'u2'}), (b:Post {postId:'p2'}) CREATE (a)-[:CREATED {createdAt:datetime('2024-04-02T11:00:00')}]->(b)
+
+MATCH (a:User {userId:'u3'}), (b:Post {postId:'p3'}) CREATE (a)-[:CREATED {createdAt:datetime('2024-04-03T07:00:00')}]->(b)
+
+MATCH (a:User {userId:'u4'}), (b:Post {postId:'p4'}) CREATE (a)-[:CREATED {createdAt:datetime('2024-04-04T12:00:00')}]->(b)
+
+MATCH (a:User {userId:'u5'}), (b:Post {postId:'p5'}) CREATE (a)-[:CREATED {createdAt:datetime('2024-04-05T09:00:00')}]->(b)
+
+// LIKED
+
+MATCH (a:User {userId:'u1'}), (b:Post {postId:'p4'}) CREATE (a)-[:LIKED {likedAt:datetime('2024-04-04T15:00:00')}]->(b)
+
+MATCH (a:User {userId:'u2'}), (b:Post {postId:'p1'}) CREATE (a)-[:LIKED {likedAt:datetime('2024-04-01T13:00:00')}]->(b)
+
+MATCH (a:User {userId:'u3'}), (b:Post {postId:'p2'}) CREATE (a)-[:LIKED {likedAt:datetime('2024-04-02T14:00:00')}]->(b)
+
+MATCH (a:User {userId:'u6'}), (b:Post {postId:'p4'}) CREATE (a)-[:LIKED {likedAt:datetime('2024-04-04T16:00:00')}]->(b)
+
+// SHARED
+
+MATCH (a:User {userId:'u2'}), (b:Post {postId:'p4'}) CREATE (a)-[:SHARED {sharedAt:datetime('2024-04-04T17:00:00')}]->(b)
+
+MATCH (a:User {userId:'u5'}), (b:Post {postId:'p1'}) CREATE (a)-[:SHARED {sharedAt:datetime('2024-04-01T14:00:00')}]->(b)
+
+// COMMENTED and ON
+
+MATCH (a:User {userId:'u2'}), (b:Comment {commentId:'c1'}) CREATE (a)-[:COMMENTED {createdAt:datetime('2024-04-01T11:00:00')}]->(b)
+
+MATCH (a:User {userId:'u3'}), (b:Comment {commentId:'c2'}) CREATE (a)-[:COMMENTED {createdAt:datetime('2024-04-01T12:00:00')}]->(b)
+
+MATCH (a:User {userId:'u4'}), (b:Comment {commentId:'c3'}) CREATE (a)-[:COMMENTED {createdAt:datetime('2024-04-02T13:00:00')}]->(b)
+
+MATCH (a:User {userId:'u6'}), (b:Comment {commentId:'c4'}) CREATE (a)-[:COMMENTED {createdAt:datetime('2024-04-04T14:00:00')}]->(b)
+
+MATCH (a:Comment {commentId:'c1'}), (b:Post {postId:'p1'}) CREATE (a)-[:ON]->(b)
+
+MATCH (a:Comment {commentId:'c2'}), (b:Post {postId:'p1'}) CREATE (a)-[:ON]->(b)
+
+MATCH (a:Comment {commentId:'c3'}), (b:Post {postId:'p2'}) CREATE (a)-[:ON]->(b)
+
+MATCH (a:Comment {commentId:'c4'}), (b:Post {postId:'p4'}) CREATE (a)-[:ON]->(b)
+
+// TAGGED_WITH
+
+MATCH (a:Post {postId:'p1'}), (b:Topic {topicId:'t1'}) CREATE (a)-[:TAGGED_WITH {relevanceScore:0.95}]->(b)
+
+MATCH (a:Post {postId:'p2'}), (b:Topic {topicId:'t2'}) CREATE (a)-[:TAGGED_WITH {relevanceScore:0.90}]->(b)
+
+MATCH (a:Post {postId:'p3'}), (b:Topic {topicId:'t3'}) CREATE (a)-[:TAGGED_WITH {relevanceScore:0.85}]->(b)
+
+MATCH (a:Post {postId:'p4'}), (b:Topic {topicId:'t1'}) CREATE (a)-[:TAGGED_WITH {relevanceScore:0.98}]->(b)
+
+MATCH (a:Post {postId:'p5'}), (b:Topic {topicId:'t2'}) CREATE (a)-[:TAGGED_WITH {relevanceScore:0.88}]->(b)
+
+// INTERESTED_IN
+
+MATCH (a:User {userId:'u1'}), (b:Topic {topicId:'t1'}) CREATE (a)-[:INTERESTED_IN {addedAt:datetime('2024-02-01T00:00:00'), strength:0.9}]->(b)
+
+MATCH (a:User {userId:'u2'}), (b:Topic {topicId:'t1'}) CREATE (a)-[:INTERESTED_IN {addedAt:datetime('2024-02-05T00:00:00'), strength:0.8}]->(b)
+
+MATCH (a:User {userId:'u3'}), (b:Topic {topicId:'t2'}) CREATE (a)-[:INTERESTED_IN {addedAt:datetime('2024-02-10T00:00:00'), strength:0.85}]->(b)
+
+MATCH (a:User {userId:'u4'}), (b:Topic {topicId:'t3'}) CREATE (a)-[:INTERESTED_IN {addedAt:datetime('2024-03-01T00:00:00'), strength:0.75}]->(b)
+
+MATCH (a:User {userId:'u5'}), (b:Topic {topicId:'t4'}) CREATE (a)-[:INTERESTED_IN {addedAt:datetime('2024-03-10T00:00:00'), strength:0.95}]->(b)
+
+// MEMBER_OF
+MATCH (a:User {userId:'u1'}), (b:Group {groupId:'g1'}) CREATE (a)-[:MEMBER_OF {joinedAt:datetime('2024-02-01T00:00:00'), role:'admin'}]->(b)
+
+MATCH (a:User {userId:'u2'}), (b:Group {groupId:'g1'}) CREATE (a)-[:MEMBER_OF {joinedAt:datetime('2024-02-10T00:00:00'), role:'member'}]->(b)
+
+MATCH (a:User {userId:'u3'}), (b:Group {groupId:'g2'}) CREATE (a)-[:MEMBER_OF {joinedAt:datetime('2024-03-01T00:00:00'), role:'admin'}]->(b)
+
+MATCH (a:User {userId:'u4'}), (b:Group {groupId:'g3'}) CREATE (a)-[:MEMBER_OF {joinedAt:datetime('2024-03-15T00:00:00'), role:'member'}]->(b)
+
+
+-----------------------------------------------------------------------------------------------------------------
+Queries to find relationships
+-----------------------------------------------------------------------------------------------------------------
+
+// Friend of Friend
+
+MATCH (u:User {userId:'u1'})-[:FOLLOWS]->(friend:User)-[:FOLLOWS]->(fof:User)
+WHERE fof.userId <> 'u1'
+RETURN u.name AS User, friend.name AS Following, fof.name AS SuggestedConnection
+
+// Content recommendation
+
+MATCH (u:User {userId:'u1'})-[:FOLLOWS]->(followed:User)-[:CREATED]->(p:Post)
+WHERE NOT (u)-[:LIKED]->(p)
+RETURN u.name AS User, followed.name AS PostCreator, p.content AS RecommendedPost, p.likeCount AS Likes
+ORDER BY p.likeCount DESC
+
+// Interest network
+
+MATCH (u:User)-[:INTERESTED_IN]->(t:Topic)<-[:INTERESTED_IN]-(other:User)
+WHERE u.userId <> other.userId
+RETURN u.name AS User, t.name AS SharedTopic, other.name AS ConnectedUser
+ORDER BY t.name
+
+// Influencer detection
+
+MATCH (u:User)<-[:FOLLOWS]-(follower:User)
+RETURN u.name AS Influencer, COUNT(follower) AS FollowerCount
+ORDER BY FollowerCount DESC
+

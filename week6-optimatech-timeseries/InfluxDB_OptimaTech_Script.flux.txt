@@ -1,0 +1,102 @@
+============================================================
+  OPTIMATECH — CITY OF EMERALD MONITORING SYSTEM
+  Time Series Database: InfluxDB 
+  ============================================================
+
+------------------------------------------------------------
+ DATA INGESTION (Line Protocol)
+------------------------------------------------------------
+
+-- CLIMATE DATA --
+
+climate_data,location=Zone_A,sensor_id=S001 temperature=24.5,humidity=60.2 1748757600000000000
+climate_data,location=Zone_A,sensor_id=S001 temperature=25.1,humidity=58.7 1748761200000000000
+climate_data,location=Zone_A,sensor_id=S001 temperature=26.3,humidity=57.1 1748764800000000000
+climate_data,location=Zone_B,sensor_id=S002 temperature=22.8,humidity=65.0 1748757600000000000
+climate_data,location=Zone_B,sensor_id=S002 temperature=23.4,humidity=63.5 1748761200000000000
+climate_data,location=Zone_B,sensor_id=S002 temperature=24.0,humidity=62.0 1748764800000000000
+
+
+
+-- TRAFFIC DATA --
+
+
+traffic_data,location=Main_St,sensor_id=T001 vehicle_count=120.0,avg_speed=55.0 1748757600000000000
+traffic_data,location=Main_St,sensor_id=T001 vehicle_count=245.0,avg_speed=42.0 1748761200000000000
+traffic_data,location=Main_St,sensor_id=T001 vehicle_count=389.0,avg_speed=31.0 1748764800000000000
+traffic_data,location=Park_Ave,sensor_id=T002 vehicle_count=98.0,avg_speed=58.0 1748757600000000000
+traffic_data,location=Park_Ave,sensor_id=T002 vehicle_count=187.0,avg_speed=50.0 1748761200000000000
+traffic_data,location=Park_Ave,sensor_id=T002 vehicle_count=310.0,avg_speed=44.0 1748764800000000000
+
+
+------------------------------------------------------------
+ QUERY 1: TIME-BASED RETRIEVAL
+------------------------------------------------------------
+
+
+from(bucket: "city_monitoring")
+  |> range(start: 2025-06-01T00:00:00Z, stop: 2025-06-02T00:00:00Z)
+  |> filter(fn: (r) => r._measurement == "climate_data")
+
+
+
+------------------------------------------------------------
+ QUERY 2: AGGREGATION (Average Temperature Per Location)
+------------------------------------------------------------
+
+
+from(bucket: "city_monitoring")
+  |> range(start: 2025-06-01T00:00:00Z, stop: 2025-06-02T00:00:00Z)
+  |> filter(fn: (r) => r._measurement == "climate_data" and r._field == "temperature")
+  |> group(columns: ["location"])
+  |> mean()
+
+
+
+------------------------------------------------------------
+ QUERY 3: FILTERING (High Temperature Readings Above 25°C)
+------------------------------------------------------------
+
+
+from(bucket: "city_monitoring")
+  |> range(start: 2025-06-01T00:00:00Z, stop: 2025-06-02T00:00:00Z)
+  |> filter(fn: (r) => r._measurement == "climate_data" and r._field == "temperature")
+  |> filter(fn: (r) => r._value > 25.0)
+
+
+
+------------------------------------------------------------
+ QUERY 4: AGGREGATION (Peak Vehicle Count Per Location)
+------------------------------------------------------------
+
+
+from(bucket: "city_monitoring")
+  |> range(start: 2025-06-01T00:00:00Z, stop: 2025-06-02T00:00:00Z)
+  |> filter(fn: (r) => r._measurement == "traffic_data" and r._field == "vehicle_count")
+  |> group(columns: ["location"])
+  |> max()
+
+
+------------------------------------------------------------
+ QUERY 5: FILTERING (Congestion Alert — Speed Below 45 km/h)
+------------------------------------------------------------
+
+
+from(bucket: "city_monitoring")
+  |> range(start: 2025-06-01T00:00:00Z, stop: 2025-06-02T00:00:00Z)
+  |> filter(fn: (r) => r._measurement == "traffic_data" and r._field == "avg_speed")
+  |> filter(fn: (r) => r._value < 45.0)
+
+
+
+------------------------------------------------------------
+ QUERY 6: TIME-BASED WINDOWING (Hourly Humidity Summary)
+------------------------------------------------------------
+
+
+from(bucket: "city_monitoring")
+  |> range(start: 2025-06-01T00:00:00Z, stop: 2025-06-02T00:00:00Z)
+  |> filter(fn: (r) => r._measurement == "climate_data" and r._field == "humidity")
+  |> aggregateWindow(every: 1h, fn: mean, createEmpty: false)
+
+

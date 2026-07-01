@@ -1,0 +1,42 @@
+# Gaming Leaderboard 
+
+# Commands used to load data samples into tables
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+# Players Table
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+aws dynamodb put-item --table-name Players --item "{\"playerId\":{\"S\":\"P-001\"},\"username\":{\"S\":\"LibWest\"},\"region\":{\"S\":\"NA\"},\"level\":{\"N\":\"42\"},\"totalScore\":{\"N\":\"345000\"},\"totalGames\":{\"N\":\"120\"},\"totalWins\":{\"N\":\"67\"}}" --endpoint-url http://localhost:8001
+
+aws dynamodb put-item --table-name Players --item "{\"playerId\":{\"S\":\"P-002\"},\"username\":{\"S\":\"ShadyWeah\"},\"region\":{\"S\":\"WA\"},\"level\":{\"N\":\"38\"},\"totalScore\":{\"N\":\"280000\"},\"totalGames\":{\"N\":\"98\"},\"totalWins\":{\"N\":\"45\"}}" --endpoint-url http://localhost:8001
+
+aws dynamodb put-item --table-name Players --item "{\"playerId\":{\"S\":\"P-003\"},\"username\":{\"S\":\"DecentThaGreat\"},\"region\":{\"S\":\"NA\"},\"level\":{\"N\":\"55\"},\"totalScore\":{\"N\":\"620000\"},\"totalGames\":{\"N\":\"210\"},\"totalWins\":{\"N\":\"130\"}}" --endpoint-url http://localhost:8001
+
+aws dynamodb put-item --table-name Players --item "{\"playerId\":{\"S\":\"P-004\"},\"username\":{\"S\":\"LightBringer\"},\"region\":{\"S\":\"EU\"},\"level\":{\"N\":\"29\"},\"totalScore\":{\"N\":\"140000\"},\"totalGames\":{\"N\":\"55\"},\"totalWins\":{\"N\":\"20\"}}" --endpoint-url http://localhost:8001
+
+aws dynamodb put-item --table-name Players --item "{\"playerId\":{\"S\":\"P-005\"},\"username\":{\"S\":\"TooSmooth\"},\"region\":{\"S\":\"EU\"},\"level\":{\"N\":\"61\"},\"totalScore\":{\"N\":\"920000\"},\"totalGames\":{\"N\":\"305\"},\"totalWins\":{\"N\":\"198\"}}" --endpoint-url http://localhost:8001
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+# Games Table
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+aws dynamodb put-item --table-name Games --item "{\"gameId\":{\"S\":\"G-001\"},\"title\":{\"S\":\"Christopolis Rise\"},\"genre\":{\"S\":\"Strategy\"},\"maxScore\":{\"N\":\"999999\"},\"active\":{\"BOOL\":true}}" --endpoint-url http://localhost:8001
+
+aws dynamodb put-item --table-name Games --item "{\"gameId\":{\"S\":\"G-002\"},\"title\":{\"S\":\"Bike Crash\"},\"genre\":{\"S\":\"Racing\"},\"maxScore\":{\"N\":\"500000\"},\"active\":{\"BOOL\":true}}" --endpoint-url http://localhost:8001
+
+C:\Users\Owner>aws dynamodb put-item --table-name Games --item "{\"gameId\":{\"S\":\"G-003\"},\"title\":{\"S\":\"Hero Call\"},\"genre\":{\"S\":\"RPG\"},\"maxScore\":{\"N\":\"750000\"},\"active\":{\"BOOL\":false}}" --endpoint-url http://localhost:8001
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+# Scores Table
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+aws dynamodb put-item --table-name Scores --item "{\"gameId\":{\"S\":\"G-001\"},\"scoreId\":{\"S\":\"S-001\"},\"playerId\":{\"S\":\"P-003\"},\"score\":{\"N\":\"98750\"},\"rank\":{\"N\":\"1\"},\"recordedAt\":{\"S\":\"2025-05-01T10:30:00Z\"}}" --endpoint-url http://localhost:8001
+
+aws dynamodb put-item --table-name Scores --item "{\"gameId\":{\"S\":\"G-001\"},\"scoreId\":{\"S\":\"S-002\"},\"playerId\":{\"S\":\"P-001\"},\"score\":{\"N\":\"87200\"},\"rank\":{\"N\":\"2\"},\"recordedAt\":{\"S\":\"2025-05-02T14:00:00Z\"}}" --endpoint-url http://localhost:8001
+
+aws dynamodb put-item --table-name Scores --item "{\"gameId\":{\"S\":\"G-001\"},\"scoreId\":{\"S\":\"S-003\"},\"playerId\":{\"S\":\"P-005\"},\"score\":{\"N\":\"95430\"},\"rank\":{\"N\":\"1\"},\"recordedAt\":{\"S\":\"2025-05-05T09:15:00Z\"}}" --endpoint-url http://localhost:8001
+
+aws dynamodb put-item --table-name Scores --item "{\"gameId\":{\"S\":\"G-002\"},\"scoreId\":{\"S\":\"S-004\"},\"playerId\":{\"S\":\"P-002\"},\"score\":{\"N\":\"412000\"},\"rank\":{\"N\":\"1\"},\"recordedAt\":{\"S\":\"2025-05-03T18:45:00Z\"}}" --endpoint-url http://localhost:8001
+
+aws dynamodb put-item --table-name Scores --item "{\"gameId\":{\"S\":\"G-002\"},\"scoreId\":{\"S\":\"S-006\"},\"playerId\":{\"S\":\"P-005\"},\"score\":{\"N\":\"455000\"},\"rank\":{\"N\":\"1\"},\"recordedAt\":{\"S\":\"2025-05-06T11:30:00Z\"}}" --endpoint-url http://localhost:8001
+
+aws dynamodb put-item --table-name Scores --item "{\"gameId\":{\"S\":\"G-003\"},\"scoreId\":{\"S\":\"S-007\"},\"playerId\":{\"S\":\"P-001\"},\"score\":{\"N\":\"640000\"},\"rank\":{\"N\":\"1\"},\"recordedAt\":{\"S\":\"2025-04-28T16:20:00Z\"}}" --endpoint-url http://localhost:8001
+
+aws dynamodb put-item --table-name Scores --item "{\"gameId\":{\"S\":\"G-003\"},\"scoreId\":{\"S\":\"S-008\"},\"playerId\":{\"S\":\"P-003\"},\"score\":{\"N\":\"710000\"},\"rank\":{\"N\":\"1\"},\"recordedAt\":{\"S\":\"2025-04-30T12:00:00Z\"}}" --endpoint-url http://localhost:8001

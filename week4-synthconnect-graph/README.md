@@ -29,5 +29,8 @@ A working graph database answering multi-hop relationship queries, documented in
   ![Property Graph Schema](./Property%20Graph%20Schema.png)
 - **PowerPoint:** [`SynthConnect - Property Graph Database Solution.pptx`](./SynthConnect%20-%20Property%20Graph%20Database%20Solution.pptx)
 
+## Scripts & Queries
+- **Cypher queries:** [`Queries for Property Graph Database.cypher`](./Queries%20for%20Property%20Graph%20Database.cypher) — node/relationship creation and all Cypher queries including friend-of-friend and recommendation traversals
+
 ## Career Relevance
 Graph databases power recommendation engines, fraud detection, and network analysis — an increasingly common part of the data landscape. This project demonstrates the ability to model non-tabular relationships and translate between query languages (Gremlin/SPARQL concepts to Cypher), a valuable skill when supporting varied database technologies.

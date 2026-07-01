@@ -33,5 +33,8 @@ A working time-series database answering aggregation and trend queries over sens
   ![Database schema - city_monitoring](./Database%20schema%20-%20city_monitoring.png)
 - **PowerPoint:** [`Time Series Databases.pptx`](./Time%20Series%20Databases.pptx)
 
+## Scripts & Queries
+- **Flux queries:** [`InfluxDB_OptimaTech_Script.flux`](./InfluxDB_OptimaTech_Script.flux) — filtering, aggregation, and time-windowed trend queries
+
 ## Career Relevance
 Time-series data management is a growing specialization tied to IoT, infrastructure monitoring, and observability — areas increasingly overlapping with database administration. This project also demonstrates methodical debugging of a data pipeline (install → ingest → query) end to end.

@@ -35,5 +35,12 @@ A complete, working polyglot-persistence architecture — five live databases wo
   ![Multimodel Architecture](./Multimodel%20Architecture.png)
 - **PowerPoint:** [`AI-Enhanced Database Ecosystem.pptx`](./AI-Enhanced%20Database%20Ecosystem.pptx)
 
+## Scripts & Queries
+- **MySQL (Relational):** [`week7_mysql.sql`](./week7_mysql.sql)
+- **DynamoDB (Key-Value):** [`week7_dynamodb.txt`](./week7_dynamodb.txt)
+- **Neo4j (Graph):** [`week7_neo4j.cypher`](./week7_neo4j.cypher)
+- **Redis (Caching):** [`week7_redis.txt`](./week7_redis.txt)
+- **InfluxDB (Time-Series):** [`week7_influxdb.flux`](./week7_influxdb.flux)
+
 ## Career Relevance
 This project is the clearest demonstration of database-architecture-level thinking in the portfolio: choosing the right database for the right job, and making five different systems interoperate toward one business outcome. This is precisely the systems-level judgment expected of a Database Administrator working in a modern, polyglot-persistence environment.

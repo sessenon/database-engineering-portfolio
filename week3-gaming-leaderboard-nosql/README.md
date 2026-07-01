@@ -31,5 +31,8 @@ A working three-table leaderboard system supporting rank queries by region and s
   ![Gaming Leaderboard ERD](./Gaming%20Leaderboard%20ERD.png)
 - **PowerPoint:** [`Gaming Leaderboard.pptx`](./Gaming%20Leaderboard.pptx)
 
+## Scripts & Queries
+- **DynamoDB commands:** [`Gaming Leaderboard - Script.txt`](./Gaming%20Leaderboard%20-%20Script.txt) — AWS CLI / NoSQL Workbench operations for table setup, data load, and CRUD operations
+
 ## Career Relevance
 NoSQL systems like DynamoDB are common in high-scale, low-latency applications. A modern DBA increasingly needs to support polyglot environments, and this project demonstrates the ability to reason about access patterns and choose a data model that fits the workload rather than defaulting to a relational schema.
