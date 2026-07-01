@@ -2,11 +2,11 @@
 
 ## Introduction
 
-This portfolio compiles the deliverables from an 8-week applied course, **Database Systems, Data Organization and Retrieval**. Each week introduced a different database technology — relational, NoSQL/document, graph, key-value/caching, and time-series — through a hands-on design-and-implementation cycle: analyze a business scenario, design the data model, implement it in a real database, diagram the architecture, and present the solution.
+This portfolio compiles the deliverables from **Database Systems, Data Organization and Retrieval**, an 8-week graduate-level course taken as part of my Master of Science in Computer Science (Online Program) at Concordia University, St. Paul. Each week introduced a different database technology — relational, NoSQL/document, graph, key-value/caching, and time-series — through a hands-on design-and-implementation cycle: analyze a business scenario, design the data model, implement it in a real database, diagram the architecture, and present the solution.
 
 I do not have an AWS account, so every AWS-native technology assigned in the course (DynamoDB, Neptune, ElastiCache, Timestream) was implemented using a free, functionally-equivalent local or cloud alternative. Identifying and justifying these substitutions became a running thread across the course and is itself a skill directly relevant to cost-conscious database administration.
 
-**Career goal:** I'm working toward a role as a **Database Administrator**. This course gave me structured, hands-on exposure to the full range of database paradigms a modern DBA is expected to support — not just relational systems, but the NoSQL, graph, caching, and time-series systems increasingly found in polyglot-persistence architectures.
+**Career goal:** I'm working toward a role as a **Database Administrator**. This course — part of my graduate coursework — gave me structured, hands-on exposure to the full range of database paradigms a modern DBA is expected to support — not just relational systems, but the NoSQL, graph, caching, and time-series systems increasingly found in polyglot-persistence architectures.
 
 ## Projects
 
