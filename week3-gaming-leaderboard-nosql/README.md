@@ -7,7 +7,7 @@ Design and implement a NoSQL data model for a gaming leaderboard system that tra
 - **Database:** Amazon DynamoDB Local
 - **Interface:** NoSQL Workbench, AWS CLI
 - **Diagramming:** LucidChart
-- **Presentation:** PowerPoint (built with pptxgenjs)
+- **Presentation:** PowerPoint
 
 ## Approach
 1. Applied an **access-pattern-first design** (following Rick Houlihan's DynamoDB modeling principles): identified the queries the application needed to answer before designing the tables.
@@ -30,7 +30,6 @@ A working three-table leaderboard system supporting rank queries by region and s
 
   ![Gaming Leaderboard ERD](./Gaming%20Leaderboard%20ERD.png)
 - **PowerPoint:** [`Gaming Leaderboard.pptx`](./Gaming%20Leaderboard.pptx)
-- **Video Presentation:** [Watch here](VIDEO_LINK_HERE) *(placeholder — replace with your hosted video link)*
 
 ## Career Relevance
 NoSQL systems like DynamoDB are common in high-scale, low-latency applications. A modern DBA increasingly needs to support polyglot environments, and this project demonstrates the ability to reason about access patterns and choose a data model that fits the workload rather than defaulting to a relational schema.

@@ -7,7 +7,7 @@ Track and analyze climate and traffic sensor data over time for OptimaTech, a cl
 - **Database:** InfluxDB OSS 2.7 (local), queried in Flux
 - **Environment:** WSL2/Ubuntu (reused from Week 5)
 - **Diagramming:** LucidChart
-- **Presentation:** PowerPoint (built with pptxgenjs)
+- **Presentation:** PowerPoint
 
 ## Approach
 1. Selected **InfluxDB OSS** as a free, widely-used open-source time-series database, functionally equivalent to Amazon Timestream in purpose and query capability.
@@ -32,7 +32,6 @@ A working time-series database answering aggregation and trend queries over sens
 
   ![Database schema - city_monitoring](./Database%20schema%20-%20city_monitoring.png)
 - **PowerPoint:** [`Time Series Databases.pptx`](./Time%20Series%20Databases.pptx)
-- **Video Presentation:** [Watch here](VIDEO_LINK_HERE) *(placeholder — replace with your hosted video link)*
 
 ## Career Relevance
 Time-series data management is a growing specialization tied to IoT, infrastructure monitoring, and observability — areas increasingly overlapping with database administration. This project also demonstrates methodical debugging of a data pipeline (install → ingest → query) end to end.

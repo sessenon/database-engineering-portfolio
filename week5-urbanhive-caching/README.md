@@ -7,7 +7,7 @@ Design a caching strategy to reduce database load and improve read performance f
 - **Database:** Redis Stack (local), managed via Redis Insight
 - **Environment:** WSL2 with Ubuntu on Windows (established this week, reused in later weeks)
 - **Diagramming:** LucidChart
-- **Presentation:** PowerPoint (built with pptxgenjs)
+- **Presentation:** PowerPoint
 
 ## Approach
 1. Selected **Redis Stack** as a free, functionally equivalent alternative to Amazon ElastiCache for Redis, since both run the same underlying Redis engine.
@@ -30,7 +30,6 @@ A fully functional local Redis cache layer with tested strings/hashes/lists/sets
 
   ![Cache Aside Flow](./Cache%20Aside%20Flow.png)
 - **PowerPoint:** [`Optimized Data Retrieval Strategy.pptx`](./Optimized%20Data%20Retrieval%20Strategy.pptx)
-- **Video Presentation:** [Watch here](VIDEO_LINK_HERE) *(placeholder — replace with your hosted video link)*
 
 ## Career Relevance
 Caching strategy and performance tuning are core DBA responsibilities, especially for read-heavy, high-traffic systems. This project also reflects the ability to stand up and troubleshoot a full local development environment (WSL2/Linux) from nothing — a practical systems skill that carries into every later week.

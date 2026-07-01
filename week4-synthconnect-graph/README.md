@@ -6,7 +6,7 @@ Model and query the relationship data of a fictional social network, SynthConnec
 ## Tools & Technologies
 - **Database:** Neo4j AuraDB (Free Tier), queried in Cypher
 - **Diagramming:** LucidChart
-- **Presentation:** PowerPoint (built with pptxgenjs)
+- **Presentation:** PowerPoint
 
 ## Approach
 1. Selected **Neo4j AuraDB** as a functionally equivalent, free alternative to Amazon Neptune (both are property-graph databases; Cypher replaces Gremlin/SPARQL as the query language).
@@ -28,7 +28,6 @@ A working graph database answering multi-hop relationship queries, documented in
 
   ![Property Graph Schema](./Property%20Graph%20Schema.png)
 - **PowerPoint:** [`SynthConnect - Property Graph Database Solution.pptx`](./SynthConnect%20-%20Property%20Graph%20Database%20Solution.pptx)
-- **Video Presentation:** [Watch here](VIDEO_LINK_HERE) *(placeholder — replace with your hosted video link)*
 
 ## Career Relevance
 Graph databases power recommendation engines, fraud detection, and network analysis — an increasingly common part of the data landscape. This project demonstrates the ability to model non-tabular relationships and translate between query languages (Gremlin/SPARQL concepts to Cypher), a valuable skill when supporting varied database technologies.

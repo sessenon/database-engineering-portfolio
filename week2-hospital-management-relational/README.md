@@ -6,7 +6,7 @@ Design and implement a fully normalized relational database for a fictional Hosp
 ## Tools & Technologies
 - **Database:** MySQL, hosted on TiDB Cloud Serverless (free tier)
 - **Diagramming:** LucidChart
-- **Presentation:** PowerPoint (built with pptxgenjs)
+- **Presentation:** PowerPoint
 
 ## Approach
 1. Started from an unnormalized (UNF) flat table of hospital data and progressively decomposed it through 1NF, 2NF, and 3NF, producing a LucidChart page for each stage.
@@ -27,7 +27,6 @@ A working, referentially-intact 3NF relational database with a complete query su
 
   ![Hospital Management ERD](./Hospital%20Management%20ERD.png)
 - **PowerPoint:** [`Hospital Management System.pptx`](./Hospital%20Management%20System.pptx)
-- **Video Presentation:** [Watch here](VIDEO_LINK_HERE) *(placeholder — replace with your hosted video link)*
 
 ## Career Relevance
 This project is the foundation of database administration: schema design, normalization, and SQL querying are core, non-negotiable DBA skills. Working through TiDB's free-tier execution constraints also mirrors real-world situations where a DBA must work within a managed cloud database's platform limitations.

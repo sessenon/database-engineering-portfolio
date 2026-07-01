@@ -10,7 +10,7 @@ Design and implement a unified, AI-driven recommendation system for a fictional 
 - **Caching:** Redis Stack via Redis Insight
 - **Time-Series:** InfluxDB OSS 2.7
 - **Diagramming:** LucidChart
-- **Presentation:** PowerPoint (built with pptxgenjs)
+- **Presentation:** PowerPoint
 
 ## Approach
 1. **Phase 1 — Strategic architecture:** justified each database choice against the characteristics of the data it would hold — structured transactional data (customers, rentals) to relational; catalog and session data to key-value; viewing/social relationships to graph; behavioral patterns over time to time-series.
@@ -34,7 +34,6 @@ A complete, working polyglot-persistence architecture — five live databases wo
 
   ![Multimodel Architecture](./Multimodel%20Architecture.png)
 - **PowerPoint:** [`AI-Enhanced Database Ecosystem.pptx`](./AI-Enhanced%20Database%20Ecosystem.pptx)
-- **Video Presentation:** [Watch here](VIDEO_LINK_HERE) *(placeholder — replace with your hosted video link)*
 
 ## Career Relevance
 This project is the clearest demonstration of database-architecture-level thinking in the portfolio: choosing the right database for the right job, and making five different systems interoperate toward one business outcome. This is precisely the systems-level judgment expected of a Database Administrator working in a modern, polyglot-persistence environment.

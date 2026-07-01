@@ -23,7 +23,7 @@ Each project folder contains: the objective, tools and methodology used, technic
 
 ## Resume
 
-The [`resume`](./resume) folder contains the before-and-after versions of my resume, showing how this course's skills and projects were incorporated.
+The [`resume`](./resume) folder contains my current resume, updated to reflect the skills and projects developed through this course.
 
 ## Reflective Summary
 
